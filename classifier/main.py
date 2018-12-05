@@ -59,8 +59,11 @@ if len(sys.argv) > 1:
     print 'Starting httpd...'
     httpd.serve_forever()
 else:
+    predictions = PredictionServer._predict()
+    
     print "Predictions for images in input/"
-    for guess in PredictionServer._predict():
+    for guess in predictions:
         print guess
-    else:
+    
+    if len(predictions) == 0:
         print "No images!"

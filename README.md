@@ -29,4 +29,11 @@ java downloader.App
 ```
 
 
+* with mavne,
+
+```bash
+java -cp downloader/target/*.jar downloader.App
+```
+
+
 
