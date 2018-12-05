@@ -1,7 +1,6 @@
 ## Python Simple Web Server
 
-* 
-* 
+* Demo of python web server capabilities
 
 ```
 python simpleserver.py
