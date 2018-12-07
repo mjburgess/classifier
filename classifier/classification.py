@@ -8,8 +8,8 @@ class Prediction(object):
     def __str__(self):
         return '\n'.join([
             '<img src="{0.target}"/>',
-            '    <p>{0.label}: {0.description}</p>',
-            '    <p>Pr: {0.probability}</p>'
+            '    <h2>{0.label}: {0.description}</h2>',
+            '    <h3>Pr: {0.probability}</h3>'
         ]).format(self)
     
 def predict_simple(image_path):

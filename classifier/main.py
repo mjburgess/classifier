@@ -28,27 +28,24 @@ class PredictionServer(BaseHTTPRequestHandler):
             
         return results
         
-    def _set_headers(self):
+    def _set_headers(self, content='text/html'):
         self.send_response(200)
-        self.send_header('Content-type', 'text/html')
+        self.send_header('Content-type', content)
         self.end_headers()
 
     def do_GET(self):
-        self._set_headers()
+        if self.path.endswith(".jpg"):
+            self._set_headers('image/jpg')
+            self.wfile.write(open('.' + self.path).read())
+        else:
+            joined = '\n'.join(PredictionServer._predict())
         
-        joined = '\n'.join(PredictionServer._predict())
-        
-        self.wfile.write(
-            PredictionServer.TEMPLATE.format(
-                predictions=(joined or "No Images!")
+            self.wfile.write(
+                PredictionServer.TEMPLATE.format(
+                    predictions=(joined or "No Images!")
+                )
             )
-        )
 
-    def do_HEAD(self):
-        self._set_headers()
-        
-    def do_POST(self):
-        return self.do_GET()
         
             
 
